@@ -385,7 +385,7 @@
   <h2 class="closing-title">Elle, you are <em>incredible.</em></h2>
   <p class="closing-msg">Stay exactly who you are. I'll always be here, by your side, just as you've been by mine.</p>
   <button class="heart-btn" id="heartBtn" onclick="sendLove()">
-    <span>💛</span> Send Love
+    <span>💛</span> Touch My Heart
   </button>
 </div>
 
@@ -417,7 +417,7 @@
   // Heart button
   function sendLove() {
     const btn = document.getElementById('heartBtn');
-    btn.innerHTML = '💛 Sent with love!';
+    btn.innerHTML = '💛 Love You Bubby';
     btn.style.background = '#F5C842';
     btn.disabled = true;
 
@@ -467,7 +467,7 @@
     // Re-enable button after animation settles
     setTimeout(() => {
       btn.disabled = false;
-      btn.innerHTML = '💛 Send Again';
+      btn.innerHTML = '💛 Love Bubby';
       btn.style.background = '';
     }, 5000);
   }
