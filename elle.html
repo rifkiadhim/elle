@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Elle Yu 💛</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #E8A020;
+    --gold-light: #F5C842;
+    --gold-pale: #FDF3D0;
+    --gold-deep: #B8760A;
+    --cream: #FFFBF0;
+    --brown: #3A2208;
+    --brown-mid: #6B3F10;
+    --brown-soft: #A06830;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+    overflow-x: hidden;
+  }
+
+  /* ── FLOATING DOTS ── */
+  .dots-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gold-light);
+    opacity: 0;
+    animation: floatUp var(--dur) ease-in infinite;
+    animation-delay: var(--delay);
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(110vh) scale(0); opacity: 0; }
+    10%  { opacity: 0.18; }
+    90%  { opacity: 0.1; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 30%, #FDE88A44 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    animation: fadeDown 0.9s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 14vw, 110px);
+    font-weight: 300; line-height: 0.95;
+    color: var(--brown);
+    letter-spacing: -0.02em;
+    animation: fadeDown 1s 0.15s ease both;
+  }
+
+  .hero-name span {
+    display: block;
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+
+  .hero-line {
+    width: 60px; height: 1.5px;
+    background: var(--gold);
+    margin: 2rem auto;
+    animation: growLine 1s 0.5s ease both;
+    transform-origin: center;
+  }
+  @keyframes growLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 4vw, 26px);
+    font-weight: 300; font-style: italic;
+    color: var(--brown-mid);
+    max-width: 420px;
+    line-height: 1.55;
+    animation: fadeDown 1s 0.4s ease both;
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-size: 11px; letter-spacing: 0.14em; color: var(--brown-soft);
+    animation: fadeIn 1.5s 1.2s ease both;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px; height: 32px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: pulse 2s 1.5s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative; z-index: 1;
+    padding: 5rem 2rem;
+    max-width: 680px; margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 7vw, 48px);
+    font-weight: 300;
+    color: var(--brown);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .section-heading em { color: var(--gold-deep); }
+
+  /* ── REASON CARDS ── */
+  .reasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin-top: 2.5rem;
+  }
+  .reason-card {
+    background: #fff;
+    border: 0.5px solid #F0D88A;
+    border-radius: 16px;
+    padding: 1.5rem 1.25rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative; overflow: hidden;
+  }
+  .reason-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold-light), var(--gold));
+  }
+  .reason-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px #E8A02022;
+  }
+  .reason-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px; font-weight: 300;
+    color: #F5C84233; line-height: 1;
+    margin-bottom: 8px;
+  }
+  .reason-title {
+    font-size: 14px; font-weight: 500;
+    color: var(--brown); margin-bottom: 6px;
+  }
+  .reason-desc {
+    font-size: 13px; color: var(--brown-soft);
+    line-height: 1.6;
+  }
+
+  /* ── LETTER ── */
+  .letter-wrap {
+    background: #fff;
+    border: 0.5px solid #F0D88A;
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    margin-top: 1rem;
+  }
+  .letter-wrap::before {
+    content: '\201C';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px; font-weight: 300;
+    color: #F5C84230;
+    position: absolute; top: -10px; left: 20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .letter-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 4vw, 24px);
+    font-weight: 300; font-style: italic;
+    color: var(--brown);
+    line-height: 1.8;
+    position: relative; z-index: 1;
+  }
+  .letter-sig {
+    margin-top: 2rem;
+    font-size: 13px; color: var(--brown-soft);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .letter-sig::before {
+    content: '';
+    flex: none;
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  /* ── DIVIDER ── */
+  .ornament {
+    text-align: center;
+    padding: 1rem 0;
+    color: var(--gold);
+    font-size: 20px;
+    letter-spacing: 12px;
+  }
+
+  /* ── CLOSING CTA ── */
+  .closing {
+    background: var(--brown);
+    color: var(--cream);
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative; z-index: 1;
+    overflow: hidden;
+  }
+  .closing::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, #E8A02022 0%, transparent 70%);
+  }
+  .closing-subtitle {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .closing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 8vw, 58px);
+    font-weight: 300; line-height: 1.15;
+    color: #fff; margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .closing-title em { color: var(--gold-light); }
+  .closing-msg {
+    font-size: 15px; color: #C8A060;
+    max-width: 380px; margin: 0 auto 2.5rem;
+    line-height: 1.7; position: relative;
+  }
+  .heart-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold);
+    color: var(--brown);
+    border: none; cursor: pointer;
+    padding: 14px 32px;
+    border-radius: 99px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    letter-spacing: 0.04em;
+    position: relative;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .heart-btn:hover { background: var(--gold-light); transform: scale(1.04); }
+  .heart-btn:active { transform: scale(0.97); }
+
+  .sparkles {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .sparkle {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: var(--gold-light);
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--brown); color: #fff;
+    padding: 12px 24px; border-radius: 99px;
+    font-size: 14px; z-index: 999;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- Floating dots -->
+<div class="dots-bg" id="dotsBg"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">A page made just for</p>
+  <h1 class="hero-name">Elle<span>Yu</span></h1>
+  <div class="hero-line"></div>
+  <p class="hero-tagline">Because some things are too beautiful to be said in ordinary words.</p>
+  <div class="scroll-hint">scroll</div>
+</div>
+
+<!-- REASONS -->
+<section>
+  <p class="section-label reveal">My reasons</p>
+  <h2 class="section-heading reveal">Why you mean <em>so much to me</em></h2>
+  <div class="reasons">
+    <div class="reason-card reveal">
+      <div class="reason-num">01</div>
+      <div class="reason-title">Your presence</div>
+      <div class="reason-desc">Every day feels lighter just because you're there.</div>
+    </div>
+    <div class="reason-card reveal">
+      <div class="reason-num">02</div>
+      <div class="reason-title">Your patience</div>
+      <div class="reason-desc">You accept me as I am, including all my flaws.</div>
+    </div>
+    <div class="reason-card reveal">
+      <div class="reason-num">03</div>
+      <div class="reason-title">Your sincerity</div>
+      <div class="reason-desc">The way you love is honest and warm, like sunlight.</div>
+    </div>
+    <div class="reason-card reveal">
+      <div class="reason-num">04</div>
+      <div class="reason-title">Your calmness</div>
+      <div class="reason-desc">When I'm lost, you're always where I come home to.</div>
+    </div>
+  </div>
+</section>
+
+<div class="ornament reveal">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- LETTER -->
+<section>
+  <p class="section-label reveal">From the heart</p>
+  <h2 class="section-heading reveal">Words I've been<br>wanting to say</h2>
+  <div class="letter-wrap reveal">
+    <p class="letter-text">
+      Thank you for still choosing to stay by my side until now, and for accepting all of my imperfections.
+      <br><br>
+      I know I'm not always perfect. But you're here, and that alone means more than I can say.
+      I hope you know how deeply grateful I am for every moment I get to spend with you.
+    </p>
+    <div class="letter-sig">with all my heart, always yours &nbsp;💛</div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="sparkles" id="sparkles"></div>
+  <p class="closing-subtitle">A final note</p>
+  <h2 class="closing-title">Elle, you are <em>incredible.</em></h2>
+  <p class="closing-msg">Stay exactly who you are. I'll always be here, by your side, just as you've been by mine.</p>
+  <button class="heart-btn" id="heartBtn" onclick="sendLove()">
+    <span>💛</span> Send Love
+  </button>
+</div>
+
+<div class="toast" id="toast">💛 Elle received it with a smile!</div>
+
+<script>
+  // Floating dots
+  const bg = document.getElementById('dotsBg');
+  for (let i = 0; i < 18; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    const size = 6 + Math.random() * 14;
+    d.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;--dur:${8+Math.random()*12}s;--delay:${Math.random()*14}s`;
+    bg.appendChild(d);
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Heart button
+  function sendLove() {
+    const btn = document.getElementById('heartBtn');
+    btn.innerHTML = '💛 Sent with love!';
+    btn.style.background = '#F5C842';
+    btn.disabled = true;
+
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+
+    // Launch flying hearts across full screen
+    const sizes   = [14, 18, 22, 28, 34, 20, 16, 26];
+    const count   = 55;
+    const colors  = ['#F5C842','#E8A020','#FFD966','#FFEB99','#FFC107','#FFE066'];
+
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        const h = document.createElement('div');
+        h.style.cssText = `
+          position:fixed;
+          pointer-events:none;
+          z-index:9999;
+          font-size:${sizes[Math.floor(Math.random()*sizes.length)]}px;
+          left:${10 + Math.random()*80}vw;
+          top:100vh;
+          opacity:1;
+          user-select:none;
+          color:${colors[Math.floor(Math.random()*colors.length)]};
+          filter: drop-shadow(0 0 4px #E8A02066);
+        `;
+        h.textContent = '♥';
+        document.body.appendChild(h);
+
+        const drift   = (Math.random() - 0.5) * 160;
+        const rot     = (Math.random() - 0.5) * 60;
+        const dur     = 2200 + Math.random() * 1800;
+        const wobble  = `translateX(${drift}px)`;
+
+        h.animate([
+          { transform: `translateY(0)   rotate(0deg)   scale(0.6)`, opacity: 0 },
+          { transform: `translateY(-25vh) rotate(${rot*0.4}deg) scale(1.1)`, opacity: 1,  offset: 0.12 },
+          { transform: `translateY(-60vh) rotate(${rot}deg)  scale(1)`,   opacity: 0.85, offset: 0.6 },
+          { transform: `translateY(-110vh) translateX(${drift}px) rotate(${rot*1.5}deg) scale(0.7)`, opacity: 0 }
+        ], { duration: dur, easing: 'ease-in-out', fill: 'forwards' });
+
+        setTimeout(() => h.remove(), dur + 100);
+      }, i * 55);
+    }
+
+    // Re-enable button after animation settles
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.innerHTML = '💛 Send Again';
+      btn.style.background = '';
+    }, 5000);
+  }
+</script>
+</body>
+</html>
